@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Employe details</h1>
+    <div id="root"></div>
+    <script>
+        console.log(window.location)
+        var name=window.location.hash.slice(1)
+        fetch(`http://localhost:4300/employe/details/${name}`).then((res)=>res.json()).then((data)=>card(data))
+
+        function card(data){
+            data.map((list)=>{
+               var ndiv=document.createElement("div")
+                var np=document.createElement("p")
+                np.innerHTML=list.firstname
+                ndiv.appendChild(np)
+                var np=document.createElement("p")
+                np.innerHTML=list.lastname
+                ndiv.appendChild(np)
+                var np=document.createElement("p")
+                np.innerHTML=list.gender
+                ndiv.appendChild(np)
+                var np=document.createElement("p")
+                np.innerHTML=list.salary
+                ndiv.appendChild(np)
+               document.getElementById("root").appendChild(ndiv)
+            })
+        }
+
+    </script>
+</body>
+</html>
